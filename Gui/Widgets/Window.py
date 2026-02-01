@@ -1,9 +1,9 @@
 
-from PySide6.QtWidgets import QApplication
-from PySide6.QtWidgets import QMainWindow
-from PySide6.QtWidgets import QSizePolicy
+from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QSizePolicy
+from PyQt5.QtWidgets import QDesktopWidget
 
-from Gui.Widgets.Router import Router
+from Gui.Widgets.Navigator import Navigator
 
 
 class Window(QMainWindow):
@@ -16,25 +16,20 @@ class Window(QMainWindow):
         size_policy.setHorizontalPolicy(QSizePolicy.Policy.Preferred)
         size_policy.setVerticalPolicy(QSizePolicy.Policy.Preferred)
 
-        self._router = Router(self)
-        self._router.setSizePolicy(size_policy)
+        self._navigator = Navigator(self)
+        self._navigator.setSizePolicy(size_policy)
 
-        self.setCentralWidget(self._router)
+        self.setCentralWidget(self._navigator)
         self.setSizePolicy(size_policy)
 
-        primary_screen = QApplication.primaryScreen()
-        
-        if primary_screen:
-            screen_geometry = primary_screen.availableGeometry()
-            screen_w = screen_geometry.width()
-            screen_h = screen_geometry.height()
+        display_geometry = QDesktopWidget().availableGeometry()
+        display_w = display_geometry.width()
+        display_h = display_geometry.height()
 
-            window_w = screen_w * 3 // 4
-            window_h = screen_h * 3 // 4
-            self.resize(window_w, window_h)
-        else:
-            self.showMaximized()
+        window_w = display_w * 3 // 4
+        window_h = display_h * 3 // 4
+        self.resize(window_w, window_h)
     
     @property
-    def router(self):
-        return self._router
+    def navigator(self):
+        return self._navigator
