@@ -1,6 +1,6 @@
 # X-Reports
 
-A powerful desktop application for analyzing CTF (Capture The Flag) writeups using local LLMs (Large Language Models). Built with PySide6.
+A simple desktop application for analyzing CTF (Capture The Flag) writeups using local LLMs (Large Language Models). Built with PySide6.
 
 ## ⭐ Features  
 ### 📁 Writeup Management  
